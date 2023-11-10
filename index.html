@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Ultimate RPS Game</title>
+   <style>
+      body {
+         font-family: Arial, sans-serif;
+         text-align: center;
+         margin: 50px;
+      }
+
+      button {
+         font-size: 16px;
+         margin: 10px;
+         padding: 10px 20px;
+         cursor: pointer;
+      }
+   </style>
+</head>
+
+<body>
+
+   <h1>Ultimate Rock, Paper, Scissors Game</h1>
+   <p>Click on an element to make your move:</p>
+
+   <button onclick="playGame('rock')">Rock</button>
+   <button onclick="playGame('gun')">Gun</button>
+   <button onclick="playGame('lighting')">Lighting</button>
+   <button onclick="playGame('devil')">Devil</button>
+   <button onclick="playGame('dragon')">Dragon</button>
+   <button onclick="playGame('water')">Water</button>
+   <button onclick="playGame('air')">Air</button>
+   <button onclick="playGame('paper')">Paper</button>
+   <button onclick="playGame('sponge')">Sponge</button>
+   <button onclick="playGame('wolf')">Wolf</button>
+   <button onclick="playGame('tree')">Tree</button>
+   <button onclick="playGame('human')">Human</button>
+   <button onclick="playGame('snake')">Snake</button>
+   <button onclick="playGame('scissors')">Scissors</button>
+   <button onclick="playGame('fire')">Fire</button>
+
+   <p id="result">Choose your move!</p>
+
+   <script>
+      function playGame(playerChoice) {
+         var choices = ['rock', 'gun', 'lighting', 'devil', 'dragon', 'water', 'air', 'paper', 'sponge', 'wolf', 'tree', 'human', 'snake', 'scissors', 'fire'];
+         var computerChoice = choices[Math.floor(Math.random() * choices.length)];
+
+         var result = getResult(playerChoice, computerChoice);
+
+         document.getElementById('result').innerHTML = `You chose ${playerChoice}. Computer chose ${computerChoice}. Result: ${result}`;
+      }
+
+      function getResult(player, computer) {
+         if (player === computer) {
+            return 'It\'s a tie!';
+         }
+
+         var interactions = {
+            'rock': ['sponge', 'wolf', 'tree', 'human', 'snake', 'scissors', 'fire'],
+            'gun': ['wolf', 'tree', 'human', 'snake', 'scissors', 'fire', 'rock'],
+            'lighting': ['tree', 'human', 'snake', 'scissors', 'fire', 'rock', 'gun'],
+            'devil': ['human', 'snake', 'scissors', 'fire', 'rock', 'gun', 'lighting'],
+            'dragon': ['snake', 'scissors', 'fire', 'rock', 'gun', 'lighting', 'devil'],
+            'water': ['scissors', 'fire', 'rock', 'gun', 'lighting', 'devil', 'dragon'],
+            'air': ['fire', 'rock', 'gun', 'lighting', 'devil', 'dragon', 'water'],
+            'paper': ['rock', 'gun', 'lighting', 'devil', 'dragon', 'water', 'air'],
+            'sponge': ['gun', 'lighting', 'devil', 'dragon', 'water', 'air', 'paper'],
+            'wolf': ['lighting', 'devil', 'dragon', 'water', 'air', 'paper', 'sponge'],
+            'tree': ['devil', 'dragon', 'water', 'air', 'paper', 'sponge', 'wolf'],
+            'human': ['dragon', 'water', 'air', 'paper', 'sponge', 'wolf', 'tree'],
+            'snake': ['water', 'air', 'paper', 'sponge', 'wolf', 'tree', 'human'],
+            'scissors': ['air', 'paper', 'sponge', 'wolf', 'tree', 'human', 'snake'],
+            'fire': ['paper', 'sponge', 'wolf', 'tree', 'human', 'snake', 'scissors']
+         };
+
+         if (interactions[player].includes(computer)) {
+            return 'You win!';
+         } else {
+            return 'You lose!';
+         }
+      }
+   </script>
+
+</body>
+
+</html>
